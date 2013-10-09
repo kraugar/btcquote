@@ -493,7 +493,7 @@ footer {
 ------------------------- */
 @media (min-width: 768px) and (max-width: 979px) {
   .home-page #top-content {
-    height: 500px;
+    height: 550px;
   }
   .sidenav {
     width: 166px;
@@ -510,7 +510,7 @@ footer {
     padding: 0;
   }
   .home-page #top-content {
-    height: 500px;
+    height: 570px;
   }
   .sidenav {
     width: auto;
@@ -536,7 +536,7 @@ footer {
     padding: 0;
   }
   .home-page #top-content {
-    height: 500px;
+    height: 650px;
   }
   .header-links {
     text-align: center;
