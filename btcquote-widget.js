@@ -5,9 +5,10 @@ var BTCQuote = function () {
 	var BACKGROUND_GRADIENT = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAA8KCgsLCw8MDA8WDw0PFhkTDw8TGR4XFxcXFx4eFxoaGhoXHh0iIyQjIh0sLC8vLCw7Ojo6Ozs7Ozs7Ozs7Ozv/2wBDARAPDxESERYSEhYXEhQSFx0YGBgYHScdHR0dHScuJCAgICAkLiotJycnLSozMy4uMzM7Ozo7Ozs7Ozs7Ozs7Ozv/wgARCABGAAEDAREAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIG/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB0IJJJJAB/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQABBQIf/8QAFBEBAAAAAAAAAAAAAAAAAAAAMP/aAAgBAwEBPwEf/8QAFBEBAAAAAAAAAAAAAAAAAAAAMP/aAAgBAgEBPwEf/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQAGPwIf/8QAFxAAAwEAAAAAAAAAAAAAAAAAABARIP/aAAgBAQABPyFUpc//2gAMAwEAAgADAAAAEIIBJJ//xAAUEQEAAAAAAAAAAAAAAAAAAAAw/9oACAEDAQE/EB//xAAUEQEAAAAAAAAAAAAAAAAAAAAw/9oACAECAQE/EB//xAAWEAADAAAAAAAAAAAAAAAAAAAAETD/2gAIAQEAAT8QHAf/2Q==";
 
 	self._template = [
+		'<style>.btc-last{ -webkit-transition: 0.2s linear color; color: #4B4B4B; } .red {color: red;} .green {color: green;}</style>',
 		'<div style="background-color: #DEDEDE; width: 210px; height: 70px; background-image: url(' + BACKGROUND_GRADIENT + '); line-height: 1; font-family: Arial; border-radius: 4px; border: 2px solid #D6D4D7;">',
 			'<div style="background-image: url(' + BITCOIN_LOGO + '); width: 56px; height: 56px; float: left; margin: 8px 0px 8px 8px;"></div>',
-			'<span style="color: {{color}}; font-weight: bold; font-size: 30px; float: right; margin: 8px 8px 0px 0px; height: 30px">{{last}}</span><br />',
+			'<span class="btc-last" style="font-weight: bold; font-size: 30px; float: right; margin: 8px 8px 0px 0px; height: 30px">{{last}}</span><br />',
 			'<span style="float: right; padding-right: 8px; height: 14px;">',
 				'<span style="color: #999; font-size: 10px; float: left;">Bid: <b>{{bid}}</b></span>',
 				'<span style="color: #999; font-size: 10px; float: left; margin-left: 6px;">Ask: <b>{{ask}}</b></span><br />',
@@ -17,20 +18,14 @@ var BTCQuote = function () {
 			'</span>',
 		'</div>'
 	].join('');
-	self._colors = {
-		default: '#4B4B4B',
-		up: 'green',
-		down: 'red'
-	};
-	self._dataNames = ['last', 'bid', 'ask', 'color'];
-	self._data = {
-		color: self._colors.default
-	};
+
+	self._dataNames = ['last', 'bid', 'ask', 'direction'];
+	self._data = {};
 
 	self.initialize = function () {
-		self.widget = document.getElementById("btc-quote");
+		self._widget = document.getElementById("btc-quote");
 
-		if (self.widget === null) {
+		if (self._widget === null) {
 			throw Exception('Please include a tag with the ID "btc-quote"');
 		}
 
@@ -54,11 +49,11 @@ var BTCQuote = function () {
 	self.receiveBTCData = function (snapshot) {
 		var name = snapshot.name();
 		var value = parseFloat(snapshot.val());
+		self.updateData(name, self.formatFloat(value));
+		self.updateWidget();
 		if (name == "last") {
 			self.updateColor(parseFloat(self._data[name]), parseFloat(value));
 		}
-		self.updateData(name, self.formatFloat(value));
-		self.updateWidget();
 	};
 
 	self.updateData = function (name, value) {
@@ -74,7 +69,7 @@ var BTCQuote = function () {
 			rendered = rendered.replace(new RegExp("{{" + name.toString() + "}}"), value);
 		}
 
-		self.widget.innerHTML = rendered;
+		self._widget.innerHTML = rendered;
 	};
 
 	self.formatFloat = function (number) {
@@ -84,22 +79,25 @@ var BTCQuote = function () {
 	};
 
 	self.updateColor = function (oldPrice, newPrice) {
+		var lastElement = self._widget.children[1].children[1];
+		console.log(lastElement);
 		if (newPrice < oldPrice) {
-			self._data.color = self._colors.down;
+			lastElement.classList.add("red");
 		}else if (newPrice > oldPrice) {
-			self._data.color = self._colors.up;
+			lastElement.classList.add("green");
 		}else{
-			self._data.color = self._colors.default;
+			self.resetColor();
 		}
 
 		setTimeout(function () {
 			self.resetColor();
-			self.updateWidget();
 		}, 400);
 	};
 
 	self.resetColor = function () {
-		self._data.color = self._colors.default;
+		var lastElement = self._widget.children[1].children[1];
+		lastElement.classList.remove("red");
+		lastElement.classList.remove("green");
 	};
 
 	this.addScript('https://cdn.firebase.com/v0/firebase.js', self.initialize);
