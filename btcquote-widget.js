@@ -91,7 +91,7 @@ var BTCQuote = function () {
 	};
 
 	self.updateHistory = function (value) {
-		if (self._history.length == 0) {
+		if (self._history.length === 0) {
 			for (var i=0; i<50; i++) {
 				self._history.push(value);
 			}
@@ -130,17 +130,17 @@ var BTCQuote = function () {
 		lastElement.classList.remove("btc-red");
 	};
 
-  	self.displaySparkline = function(id, width, height, interpolation, animate, updateDelay, transitionDelay) {
-	    // Modified from http://bl.ocks.org/benjchristensen/1148374
-  		var id = "#btc-sparkline";
-  		var width = 220;
-  		var height = 15;
-  		var interpolation = "basis";
-  		var updateDelay = 1000;
-  		var transitionDelay = 1000;
+	self.displaySparkline = function() {
+		// Modified from http://bl.ocks.org/benjchristensen/1148374
+		var id = "#btc-sparkline";
+		var width = 220;
+		var height = 15;
+		var interpolation = "basis";
+		var updateDelay = 1000;
+		var transitionDelay = 1000;
 
-	    var graph = d3.select(id).append("svg:svg").attr("width", "100%").attr("height", "100%");
-	    var x,y,line;
+		var graph = d3.select(id).append("svg:svg").attr("width", "100%").attr("height", "100%");
+		var x,y,line;
 
 		if (self._history.length > 50) self._history.shift();
 
@@ -148,10 +148,10 @@ var BTCQuote = function () {
 		y = d3.scale.linear().domain([d3.max(self._history)+5, d3.min(self._history)-5]).range([0, height]);
 		line = d3.svg.line()
 			.x(function(d,i) { 
-			  return x(i); 
+				return x(i); 
 			})
 			.y(function(d) { 
-			  return y(d); 
+				return y(d); 
 			})
 			.interpolate(interpolation);
 
@@ -167,7 +167,7 @@ var BTCQuote = function () {
 		.duration(transitionDelay)
 		.attr("transform", "translate(" + x(0) + ")");
 	};
-	  
+
 	self.addScript('http://d3js.org/d3.v2.js', self.initialize);
 	self.addScript('https://cdn.firebase.com/v0/firebase.js', self.initialize);
 };
