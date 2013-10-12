@@ -50,9 +50,15 @@ pre code {
   right: 10px;
   background-color: #ccc;
   font-family: Lato, "Helvetica Neue";
-  font-size: 13px;
-  padding: 4px 6px;
+  font-size: 12px;
+  padding: 2px 6px;
   border-radius: 4px;
+  color: #333;
+  -webkit-user-select: none; 
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;  
 }
 
 .copy-button:hover {
