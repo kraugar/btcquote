@@ -131,7 +131,7 @@ var BTCQuote = function () {
 			self._elements.last.classList.add("btc-red");
 			self._elements.last.classList.add("flash");
 		}else if (newPrice > oldPrice) {
-			lself._elements.last.classList.add("btc-green");
+			self._elements.last.classList.add("btc-green");
 			self._elements.last.classList.add("flash");
 		}else{
 			self.resetColor();
