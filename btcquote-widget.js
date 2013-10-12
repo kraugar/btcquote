@@ -6,32 +6,41 @@ var BTCQuote = function () {
 
 	self._template = [
 		'<style>',
-			'.btc-last{-webkit-transition: 0.2s linear color; color: #4B4B4B;} .btc-red {color: red;} .btc-green {color: green;} .btc-path {-webkit-transition: 0.2s linear opacty; stroke: 0.2; stroke: #dfdfdf; stroke-width: 2px; fill: none; }',
-			'.btc-hides{-webkit-transition: 0.2s linear opacity; opacity: 1;}',
-			'.btc-top:hover > .btc-hides {opacity: 0}',
-			'.btc-top:hover .btc-path {stroke: #F7931A}',
-			'.animated { -webkit-animation-duration: 0.5s; -moz-animation-duration: 0.5s; -o-animation-duration: 0.5s; animation-duration: 0.5s;}',
+			'.btc-last {transition: 0.2s linear color; -o-transition: 0.2s linear color; -moz-transition: 0.2s linear color; -webkit-transition: 0.2s linear color; color: #4B4B4B;} .btc-red {color: red;} .btc-green {color: green;} .btc-path {-webkit-transition: 0.2s linear opacty; stroke: #dfdfdf; stroke-width: 1.5px; fill: none; }',
+			'.btc-hides {transition: 0.2s linear opacity; -o-transition: 0.2s linear opacity; -moz-transition: 0.2s linear opacity; -webkit-transition: 0.2s linear opacity;opacity: 1;}',
+			'.btc-box {height: 70px; width: 210px;}',
+			'#btc-slider {transition: 0.1s ease-in top; -o-transition: 0.1s ease-in top; -moz-transition: 0.1s ease-in top; -webkit-transition: 0.1s ease-in top; top: 0px; position: relative;}',
+			'#btc-slider.btc-is-loading {top: -70px;}',
+			'.btc-box:hover > .btc-hides {opacity: 0}',
+			'.btc-box:hover .btc-path {stroke: #F7931A}',
+			'.animated { -webkit-animation-duration: 1s; -moz-animation-duration: 1s; -o-animation-duration: 1s; animation-duration: 1s;}',
 			'@-webkit-keyframes flash { 0%, 50%, 100% {opacity: 1;} 25%, 75% {opacity: 0;} }',
 			'@-moz-keyframes flash { 0%, 50%, 100% {opacity: 1;} 25%, 75% {opacity: 0;} }',
 			'@-o-keyframes flash { 0%, 50%, 100% {opacity: 1;} 25%, 75% {opacity: 0;}}',
 			'@keyframes flash { 0%, 50%, 100% {opacity: 1;} 25%, 75% {opacity: 0;}}',
 			'.animated.flash { -webkit-animation-name: flash; -moz-animation-name: flash; -o-animation-name: flash; animation-name: flash; }',
 		'</style>',
-		'<div class="btc-top" style="position: relative; background-color: #DEDEDE; width: 210px; height: 70px; background-image: url(' + BACKGROUND_GRADIENT + '); line-height: 1; font-family: Arial; border-radius: 4px; border: 2px solid #D6D4D7;">',
-			'<div style="position: absolute; z-index: 2; background-image: url(' + BITCOIN_LOGO + '); width: 56px; height: 56px; float: left; margin: 8px 0px 8px 8px;"></div>',
-			'<span class="btc-last animated btc-hides" style="position: relative; z-index: 2; font-weight: bold; font-size: 30px; float: right; margin: 8px 8px 0px 0px; height: 30px">${{last}}</span><br />',
-			'<span class="btc-hides" style="float: right; padding-right: 8px; height: 14px;">',
-				'<span style="color: #999; font-size: 10px; float: left;">Bid: <b>${{bid}}</b></span>',
-				'<span style="color: #999; font-size: 10px; float: left; margin-left: 6px;">Ask: <b>${{ask}}</b></span><br />',
-			'</span>',
-			'<div id="btc-sparkline" style="width:220px; height:15px; position: absolute; right: -10px; top: 14px;"></div>',
-			'<span style="float: right; font-size: 10px; color: #666; padding-right: 8px;">',
-				'Powered by <a href="http://www.btcquote.com" target="_blank" style="color: #666; text-decoration: underline;">BTCQuote.com</a>',
-			'</span>',
+		'<div class="btc-box" style="font-family: Arial; position: relative; cursor: default; overflow:hidden; background-color: #DEDEDE; width: 210px; height: 70px; background-image: url(' + BACKGROUND_GRADIENT + '); line-height: 1; border-radius: 4px; border: 2px solid #D6D4D7;">',
+			'<div class="btc-is-loading" id="btc-slider">',
+				'<div class="btc-box">',
+					'<div style="position: absolute; z-index: 2; background-image: url(' + BITCOIN_LOGO + '); width: 56px; height: 56px; float: left; margin: 8px 0px 8px 8px;"></div>',
+					'<span class="btc-last animated btc-hides" style="position: relative; z-index: 2; font-weight: bold; font-size: 30px; float: right; margin: 8px 8px 0px 0px; height: 30px">$<span id="btc-last-field"></span></span><br />',
+					'<span class="btc-hides" style="float: right; padding-right: 8px; height: 14px;">',
+						'<span style="color: #999; font-size: 10px; float: left;">Bid: <b>$<span id="btc-bid-field"></span></b></span>',
+						'<span style="color: #999; font-size: 10px; float: left; margin-left: 6px;">Ask: <b>$<span id="btc-ask-field"></span></b></span><br />',
+					'</span>',
+					'<div id="btc-sparkline" style="width:220px; height:15px; position: absolute; right: -10px; overflow: hidden;"></div>',
+					'<span style="float: right; font-size: 10px; color: #666; padding-right: 8px;">',
+						'Powered by <a href="http://www.btcquote.com" target="_blank" style="color: #666; text-decoration: underline; cursor: pointer">BTCQuote.com</a>',
+					'</span>',
+				'</div>',
+				'<div class="btc-box" style="text-align: center; line-height: 70px; color: #aaa;">Loading...</div>',
+			'</div>',
 		'</div>'
 	].join('\n');
 
-	self._dataNames = ['last', 'bid', 'ask', 'direction'];
+	self._dataNames = ['last', 'bid', 'ask'];
+	self._elements = {};
 	self._data = {};
 	self._history = [];
 
@@ -42,6 +51,8 @@ var BTCQuote = function () {
 		if (self._widget === null) {
 			throw Exception('Please include a tag with the ID "btc-quote"');
 		}
+
+		self.createWidget();
 
 		self.BTCRef = new Firebase("https://publicdata-bitcoin.firebaseio.com/");
 		self.BTCRef.child("last").on("value", self.receiveBTCData);
@@ -67,9 +78,16 @@ var BTCQuote = function () {
 
 		self.updateData(name, self.formatFloat(value));
 		self.updateWidget();
+		
 		if (name == "last") {
 			self.updateHistory(value);
 			self.updateColor(oldValue, parseFloat(value));
+		}
+		
+		self.updateSparkline();
+
+		if (self._data.bid && self._data.ask && self._data.last) {
+			self._elements.slider.classList.remove('btc-is-loading');
 		}
 	};
 
@@ -78,16 +96,19 @@ var BTCQuote = function () {
 	};
 
 	self.updateWidget = function () {
-		var rendered = self._template;
-
 		for (var nameIndex in self._dataNames) {
 			var name = self._dataNames[nameIndex];
 			var value = self._data[name]? self._data[name]:"";
-			rendered = rendered.replace(new RegExp("{{" + name.toString() + "}}"), value);
+			self._elements[name].innerHTML = value;
 		}
+	};
 
-		self._widget.innerHTML = rendered;
-		self.displaySparkline();
+	self.createWidget = function () {
+		self._widget.innerHTML = self._template;
+		self._elements.bid = document.getElementById("btc-bid-field");
+		self._elements.ask = document.getElementById("btc-ask-field");
+		self._elements.last = document.getElementById("btc-last-field");
+		self._elements.slider = document.getElementById("btc-slider");
 	};
 
 	self.updateHistory = function (value) {
@@ -106,31 +127,28 @@ var BTCQuote = function () {
 	};
 
 	self.updateColor = function (oldPrice, newPrice) {
-		var lastElement = self._widget.children[1].children[1];
-		console.log(lastElement, oldPrice, newPrice);
 		if (newPrice < oldPrice) {
-			lastElement.classList.add("btc-red");
-			lastElement.classList.add("flash");
+			self._elements.last.classList.add("btc-red");
+			self._elements.last.classList.add("flash");
 		}else if (newPrice > oldPrice) {
-			lastElement.classList.add("btc-green");
-			lastElement.classList.add("flash");
+			lself._elements.last.classList.add("btc-green");
+			self._elements.last.classList.add("flash");
 		}else{
 			self.resetColor();
 		}
 
 		setTimeout(function () {
 			self.resetColor();
-		}, 500);
+		}, 1000);
 	};
 
 	self.resetColor = function () {
-		var lastElement = self._widget.children[1].children[1];
-		lastElement.classList.remove("flash");
-		lastElement.classList.remove("btc-green");
-		lastElement.classList.remove("btc-red");
+		self._elements.last.classList.remove("flash");
+		self._elements.last.classList.remove("btc-green");
+		self._elements.last.classList.remove("btc-red");
 	};
 
-	self.displaySparkline = function() {
+	self.updateSparkline = function() {
 		// Modified from http://bl.ocks.org/benjchristensen/1148374
 		var id = "#btc-sparkline";
 		var width = 220;
@@ -139,13 +157,15 @@ var BTCQuote = function () {
 		var updateDelay = 1000;
 		var transitionDelay = 1000;
 
-		var graph = d3.select(id).append("svg:svg").attr("width", "100%").attr("height", "100%");
+		if (!self._graph) {
+			self._graph = d3.select(id).append("svg:svg").attr("width", "100%").attr("height", "100%");
+		}
 		var x,y,line;
 
 		if (self._history.length > 50) self._history.shift();
 
 		x = d3.scale.linear().domain([0, 50]).range([-5, width]);
-		y = d3.scale.linear().domain([d3.max(self._history)+5, d3.min(self._history)-5]).range([0, height]);
+		y = d3.scale.linear().domain([d3.max(self._history)+1, d3.min(self._history)-1]).range([0, height]);
 		line = d3.svg.line()
 			.x(function(d,i) { 
 				return x(i); 
@@ -155,9 +175,10 @@ var BTCQuote = function () {
 			})
 			.interpolate(interpolation);
 
-		graph.append("svg:path").attr("d", line(self._history)).attr("class", "line");
+		self._graph.selectAll(".btc-path").remove();
+		self._graph.append("svg:path").attr("d", line(self._history)).attr("class", "line");
 
-		graph.selectAll("path")
+		self._graph.selectAll("path")
 		.data([self._history])
 		.attr("transform", "translate(" + x(1) + ")")
 		.attr("d", line)
