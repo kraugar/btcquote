@@ -24,10 +24,10 @@ var BTCQuote = function () {
 			'<div class="btc-is-loading" id="btc-slider">',
 				'<div class="btc-box">',
 					'<div style="position: absolute; z-index: 2; background-image: url(' + BITCOIN_LOGO + '); width: 56px; height: 56px; float: left; margin: 8px 0px 8px 8px;"></div>',
-					'<span class="btc-last animated btc-hides" style="position: relative; z-index: 2; font-weight: bold; font-size: 30px; float: right; margin: 8px 8px 0px 0px; height: 30px">$<span id="btc-last-field"></span></span><br />',
+					'<span class="btc-last btc-hides" style="position: relative; z-index: 2; font-weight: bold; font-size: 30px; float: right; margin: 8px 8px 0px 0px; height: 30px"><span class="animated" id="btc-last-field"></span></span><br />',
 					'<span class="btc-hides" style="float: right; padding-right: 8px; height: 14px;">',
-						'<span style="color: #999; font-size: 10px; float: left;">Bid: <b>$<span id="btc-bid-field"></span></b></span>',
-						'<span style="color: #999; font-size: 10px; float: left; margin-left: 6px;">Ask: <b>$<span id="btc-ask-field"></span></b></span><br />',
+						'<span style="color: #999; font-size: 10px; float: left;">Bid: <b><span id="btc-bid-field"></span></b></span>',
+						'<span style="color: #999; font-size: 10px; float: left; margin-left: 6px;">Ask: <b><span id="btc-ask-field"></span></b></span><br />',
 					'</span>',
 					'<div id="btc-sparkline" style="width:220px; height:15px; position: absolute; right: -10px; overflow: hidden;"></div>',
 					'<span style="float: right; font-size: 10px; color: #666; padding-right: 8px;">',
@@ -99,7 +99,7 @@ var BTCQuote = function () {
 		for (var nameIndex in self._dataNames) {
 			var name = self._dataNames[nameIndex];
 			var value = self._data[name]? self._data[name]:"";
-			self._elements[name].innerHTML = value;
+			self._elements[name].innerHTML = "$" + value;
 		}
 	};
 
