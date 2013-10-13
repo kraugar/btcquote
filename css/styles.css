@@ -66,6 +66,19 @@ pre code {
   cursor: pointer;
 }
 
+#btc-quote-row {
+  height: 74px;
+}
+
+#btc-quote {
+  top: -35px;
+  position: relative;
+}
+
+#btc-quote div{
+  margin: 0 auto;
+}
+
 /* Global: Header
 -------------------------------------------------- */
 header {

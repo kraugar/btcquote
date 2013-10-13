@@ -20,6 +20,9 @@
   <script>hljs.initHighlightingOnLoad();</script>
 
   <style>
+    #btc-quote-row {
+      height: 74px;
+    }
     #btc-quote {
       top: -35px;
       position: relative;
@@ -46,7 +49,7 @@
 
     <div class="header-content">
       <div class="container text-center">
-        <div class="row">
+        <div class="row" id="btc-quote-row">
           <div id="btc-quote"></div>
         </div>
         <div class="row">
@@ -139,32 +142,15 @@
     </div>
   </footer>
 
-  <div id="auth-modal" class="modal hide fade" tabindex="-1" role="dialog">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">×</button>
-      <h4 id="myModalLabel">Authenticate to continue</h4>
-    </div>
-    <div class="modal-body text-center">
-      <p>
-        <a id="twitter-signin" href="javascript:login('twitter');">
-          <img id="twitter-signin-btn" src="images/sign-in-with-twitter.png">
-        </a>
-      </p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal">Cancel</button>
-    </div>
-  </div>
-
   <!-- BTCQuote -->
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase-token-generator.js"></script>
+  <!-- Download from https://github.com/firebase/BTCQuote -->
   <script type="text/javascript" src="./widget/btcquote-widget.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap-modal.min.js"></script>
 
-  <!-- Download from https://github.com/firebase/BTCQuote -->
   <!-- Twitter / Facebook / Google -->
   <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
   <div id="fb-root"></div>
