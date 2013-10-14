@@ -21,6 +21,7 @@
 </head>
 
 <body class="home-page">
+
   <a href="https://github.com/firebase/btcquote" target="_blank">
     <img class="fork-on-github" src="images/fork-on-github-white.png" alt="Fork me on GitHub">
   </a>
@@ -42,12 +43,12 @@
         <div class="row">
           <h3>Embed the BTCQuote Widget in Your Website:</h3>
         </div>
-        <div class="row">
-          <pre><code>
-            <div class="copy-button">Copy to Clipboard</div>
+        <div class="row" id="code-row">
+         
+          <pre><code id="clipboard_content">
 &lt;div id="btc-quote"&gt;&lt;/div&gt;
 &lt;script type="text/javascript" src="https://abeisgreat.githubio.com/btcquote/widget/btcquote-widget.min.js"&gt;&lt;/script&gt;
-          </code></pre>
+          </code><div class="copy-button" title="Click me to copy to clipboard." data-clipboard-target="clipboard_content">Copy to Clipboard</div></pre>
         </div>
     </div>
   </header>
@@ -137,6 +138,16 @@
   <script type="text/javascript" src="./widget/btcquote-widget.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap-modal.min.js"></script>
+
+  <script src="scripts/ZeroClipboard.min.js"></script>
+  <script>
+    ZeroClipboard.setDefaults( { moviePath: 'scripts/ZeroClipboard.swf' } );
+    clip = new ZeroClipboard();
+    clip.glue($(".copy-button"));
+    clip.on( 'mousedown', function ( client, args ) {
+      $(".copy-button").html("Copied!");
+    });
+  </script>
 
   <!-- Twitter / Facebook / Google -->
   <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>

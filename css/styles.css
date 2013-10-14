@@ -31,6 +31,10 @@ img.fork-on-github {
 
 .satisfy { font-family: 'Satisfy', cursive; }
 
+#code-row {
+  position: relative;
+}
+
 pre {
   text-align: left; 
   max-width: 860px; 
@@ -45,9 +49,11 @@ pre code {
 }
 
 .copy-button {
+  width: 92px;
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 2;
   background-color: #ccc;
   font-family: Lato, "Helvetica Neue";
   font-size: 12px;
@@ -59,9 +65,10 @@ pre code {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;  
+  text-align: center;
 }
 
-.copy-button:hover {
+.copy-button.zeroclipboard-is-hover {
   background-color: #bbb;
   cursor: pointer;
 }
