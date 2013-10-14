@@ -165,7 +165,7 @@ var BTCQuote = function () {
 		if (self._history.length > 50) self._history.shift();
 
 		x = d3.scale.linear().domain([0, 50]).range([-5, width]);
-		y = d3.scale.linear().domain([d3.max(self._history)+1, d3.min(self._history)-1]).range([0, height]);
+		y = d3.scale.linear().domain([d3.max(self._history)+0.2, d3.min(self._history)-0.2]).range([0, height]);
 		line = d3.svg.line()
 			.x(function(d,i) { 
 				return x(i); 
