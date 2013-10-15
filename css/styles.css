@@ -202,6 +202,9 @@ header {
   *display: inline;
   *zoom: 1;
 }
+.social-buttons li.fb-btn {
+  padding-right: 30px;
+}
 
 /************************************************/
 /* Stuff below-the-fold (the white part) */
@@ -580,6 +583,7 @@ footer {
   .social-buttons li {
     padding: 6px 0px 5px;
   }
+
   .bottom-content {
     padding: 0 15px;
   }
