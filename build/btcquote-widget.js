@@ -12,7 +12,7 @@ var BTCQuote = function () {
 
 		self._widget = document.getElementById("btc-quote");
 		if (self._widget === null) {
-			throw Exception('Please include a tag with the ID "btc-quote"');
+			throw 'Please include a tag with the ID "btc-quote"';
 		}
 
 		self.createWidget();
@@ -135,7 +135,8 @@ var BTCQuote = function () {
 			'#btc-last-wrapper {transition: 0.2s linear color; -o-transition: 0.2s linear color; -moz-transition: 0.2s linear color; -webkit-transition: 0.2s linear color; color: #4B4B4B;}',
 			'#btc-last-wrapper.btc-red {color: red;}', 
 			'#btc-last-wrapper.btc-green {color: green;}',
-			'.btc-box {height: 71px; width: 212px;}',
+			'.btc-box {height: 71px; width: 212px; font-size: 12px; line-height: 1;}',
+			'.btc-box span {font-size: 12px;}',
 			'#btc-slider {transition: 0.1s ease-in top; -o-transition: 0.1s ease-in top; -moz-transition: 0.1s ease-in top; -webkit-transition: 0.1s ease-in top; top: 0px; position: relative;}',
 			'#btc-slider.btc-is-loading {top: -72px;}',
 			'#btc-last-field {height: 32px;}',
@@ -152,7 +153,7 @@ var BTCQuote = function () {
 			'.odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-minimal.odometer-animating-down .odometer-ribbon-inner { -webkit-transform: translateY(-100%); -moz-transform: translateY(-100%); -ms-transform: translateY(-100%); -o-transform: translateY(-100%); transform: translateY(-100%); }',
 			'.odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-minimal.odometer-animating-down.odometer-animating .odometer-ribbon-inner { -webkit-transition: -webkit-transform 2s; -moz-transition: -moz-transform 2s; -ms-transition: -ms-transform 2s; -o-transition: -o-transform 2s; -o-transition: -o-transform 2s; transition: transform 2s; -webkit-transform: translateY(0); -moz-transform: translateY(0); -ms-transform: translateY(0); -o-transform: translateY(0); transform: translateY(0); }',
 		'</style>',
-		'<div class="btc-box" style="font-family: Arial; position: relative; overflow:hidden; background-color: #DFE0E2; background-image: url(' + BACKGROUND_GRADIENT + '); background-repeat: repeat-x; line-height: 1; border-radius: 4px; border: 2px solid #D6D4D7;">',
+		'<div class="btc-box" style="font-family: Arial; position: relative; overflow:hidden; background-color: #DFE0E2; background-image: url(' + BACKGROUND_GRADIENT + '); background-repeat: repeat-x; border-radius: 4px; border: 2px solid #D6D4D7;">',
 			'<div class="btc-is-loading" id="btc-slider">',
 				'<div class="btc-box">',
 					'<div style="position: absolute; z-index: 2; background-image: url(' + BITCOIN_LOGO + '); width: 56px; height: 56px; top: 8px; left: 10px;"></div>',
@@ -171,7 +172,7 @@ var BTCQuote = function () {
 						'Powered by <a href="http://www.btcquote.com" target="_blank" style="color: #666; text-decoration: underline; cursor: pointer; font-size: 10px;">BTCQuote.com</a>',
 					'</span>',
 				'</div>',
-				'<div class="btc-box" style="text-align: center; line-height: 70px; color: #aaa;">Loading...</div>',
+				'<div class="btc-box" style="text-align: center; line-height: 70px; color: #aaa; font-size: 12px;">Loading...</div>',
 			'</div>',
 		'</div>'
 	].join('\n');
