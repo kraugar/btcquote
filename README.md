@@ -21,12 +21,12 @@ BTCQuote uses the [Bitcoin Open Data Set](https://www.firebase.com/docs/data/ind
 ### Where can I use BTCQuote?
 BTCQuote is completely free and can be used on any website or blog without restriction. The source code to BTCQuote is published under the [MIT license](http://firebase.mit-license.org/), so feel free to improve, adapt, or redistribute it as you like.
 
+### Where does the data come from?
+Bitcoin price data is stored in the [Bitcoin Open Data Set](https://www.firebase.com/docs/data/index.html) which uses data provided by [Coinbase](https://www.coinbase.com/), the leading online bitcoin wallet service.
+
 ### Who's behind BTCQuote.com?
 BTCQuote was built by the folks at [Firebase](https://wwwfirebase.com) in San Francisco, California. 
 Community submissions are encouraged. [Star BTCQuote on GitHub](https://github.com/firebase/btcquote) and send a pull request when you're ready to contribute.
-
-### Where does the data come from?
-Bitcoin price data is provided by [Coinbase](https://www.coinbase.com/) the leading online bitcoin wallet service.
 
 License
 -------
