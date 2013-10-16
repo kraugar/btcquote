@@ -48,15 +48,15 @@ var BTCQuote = function () {
 		}
 
 		if (self._data.bid && self._data.ask && self._data.last) {
-			self.removeClassFromElement(self._elements.slider, "btc-is-loading");
+			self.removeClassToElement(self._elements.slider, "btc-is-loading");
 		}
 	};
 
 	self.updateColor = function (oldPrice, newPrice) {
 		if (newPrice < oldPrice) {
-			self.addClassFromElement(self._elements.lastWrapper, "btc-red");
+			self.addClassToElement(self._elements.lastWrapper, "btc-red");
 		}else if (newPrice > oldPrice) {
-			self.addClassFromElement(self._elements.lastWrapper, "btc-green");
+			self.addClassToElement(self._elements.lastWrapper, "btc-green");
 		}else{
 			self.resetColor();
 		}
@@ -107,21 +107,21 @@ var BTCQuote = function () {
 	};
 
 	self.resetColor = function () {
-		self.removeClassFromElement(self._elements.lastWrapper, "btc-green");
-		self.removeClassFromElement(self._elements.lastWrapper, "btc-red");
+		self.removeClassToElement(self._elements.lastWrapper, "btc-green");
+		self.removeClassToElement(self._elements.lastWrapper, "btc-red");
 	};
 
 	// (add|remove)ClassFromElement from http://stackoverflow.com/a/6787464/1570248
-		self.addClassToElement = function(el, className){
-			el.className += ' '+className;   
-		};
+	self.addClassToElement = function(el, className){
+		el.className += ' '+className;   
+	};
 
-		self.removeClassFromElement = function(el, className){
-			var elClass = ' '+el.className+' ';
-			while(elClass.indexOf(' '+className+' ') != -1)
-				elClass = elClass.replace(' '+className+' ', '');
-			el.className = elClass;
-		};
+	self.removeClassToElement = function(el, className){
+		var elClass = ' '+el.className+' ';
+		while(elClass.indexOf(' '+className+' ') != -1)
+			elClass = elClass.replace(' '+className+' ', '');
+		el.className = elClass;
+	};
 
 	// Initialize widget by loading Firebase.js
 	self.addScript('https://cdn.firebase.com/v0/firebase.js', self.initialize);
@@ -157,14 +157,13 @@ var BTCQuote = function () {
 				'<div class="btc-box">',
 					'<div style="position: absolute; z-index: 2; background-image: url(' + BITCOIN_LOGO + '); width: 56px; height: 56px; top: 8px; left: 10px;"></div>',
 					'<div id="btc-last-wrapper" style="position: relative; z-index: 2; font-weight: bold; font-size: 30px; float: right; margin: 6px 10px 0px 0px; height: 32px; width: 140px; text-align: right;">',
-						'<span style="position: relative; top: 2px; font-size: 28px;">$</span>',
-						'<span class="odometer" id="btc-last-field"></span>',
+						'<span style="position: relative; top: 2px; font-size: 28px;">$</span><span class="odometer" id="btc-last-field"></span>',
 					'</div>',
 					'<span class="btc-hides" style="float: right; margin-right: 10px; height: 14px; color: #999; font-size: 10px; margin-top: 2px;">',
-						'<span style="float: left;">Bid: ',
+						'<span>Bid: ',
 							'<b>$</b><b id="btc-bid-field"></b>',
 						'</span>',
-						'<span style="float: left; margin-left: 2px;">Ask: ',
+						'<span style="margin-left: 2px;">Ask: ',
 							'<b>$</b><b id="btc-ask-field"></b>',
 						'</span>',
 					'</span>',
