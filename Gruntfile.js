@@ -7,19 +7,25 @@ module.exports = function (grunt) {
         }
       }
     },
-    concat: {
-      "btcquote-widget": {
-       "src": [
-         "src/*.js",
-         "src/lib/odometer/odometer.js"
-       ],
-        "dest": "build/btcquote-widget.js"
-      }
-    },
     jshint: {
       all: [
         'src/*.js',
       ]
+    },
+    replace: {
+      odometer: {
+        options: {
+          patterns: [
+            {
+              match: 'odometer',
+              replacement: '\n<%= grunt.file.read("src/lib/odometer/odometer.js") %>'
+            }
+          ]
+        },
+        files: [
+          {expand: true, cwd: 'src', src: ['btcquote-widget.js'], dest: 'build/'}
+        ]
+      }
     },
     uglify: {
       "btcquote-widget.min.js": {
@@ -30,13 +36,13 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-replace');
 
   grunt.registerTask('default', [
     'jshint',
-    'concat',
+    'replace',
     'uglify'
   ]);
 };

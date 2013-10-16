@@ -179,3 +179,8 @@ var BTCQuote = function () {
 };
 
 var _bq = new BTCQuote();
+
+var oldBrowser = document.addEventListener === undefined;
+if (!oldBrowser) {
+	// @@odometer
+}

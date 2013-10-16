@@ -179,6 +179,10 @@ var BTCQuote = function () {
 };
 
 var _bq = new BTCQuote();
+
+var oldBrowser = document.addEventListener === undefined;
+if (!oldBrowser) {
+	// 
 (function() {
   var COUNT_FRAMERATE, COUNT_MS_PER_FRAME, DIGIT_FORMAT, DIGIT_HTML, DIGIT_SPEEDBOOST, DURATION, FORMAT_MARK_HTML, FORMAT_PARSER, FRAMERATE, FRAMES_PER_VALUE, MS_PER_FRAME, MutationObserver, Odometer, RIBBON_HTML, TRANSITION_END_EVENTS, TRANSITION_SUPPORT, VALUE_HTML, createFromHTML, fractionalPart, now, requestAnimationFrame, round, transitionCheckStyles, wrapJQuery, _jQueryWrapped, _old, _ref, _ref1,
     __slice = [].slice;
@@ -763,3 +767,5 @@ var _bq = new BTCQuote();
   window.Odometer = Odometer;
 
 }).call(this);
+
+}
