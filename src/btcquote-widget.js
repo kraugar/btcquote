@@ -88,7 +88,9 @@ var BTCQuote = function () {
 
 		self._elements.last.innerHTML = 0;
 
-		new Odometer({el: self._elements.last, format: 'ddddd.dd'});
+		if (!self.isOldBrowser) {
+			new Odometer({el: self._elements.last, format: 'ddddd.dd'});
+		}
 	};
 
 	self.updateHistory = function (value) {
@@ -180,7 +182,7 @@ var BTCQuote = function () {
 
 var _bq = new BTCQuote();
 
-var oldBrowser = document.addEventListener === undefined;
-if (!oldBrowser) {
+_bq.isOldBrowser = document.addEventListener === undefined;
+if (!_bq.isOldBrowser) {
 	// @@odometer
 }

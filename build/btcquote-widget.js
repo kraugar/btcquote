@@ -88,7 +88,9 @@ var BTCQuote = function () {
 
 		self._elements.last.innerHTML = 0;
 
-		new Odometer({el: self._elements.last, format: 'ddddd.dd'});
+		if (!self.isOldBrowser) {
+			new Odometer({el: self._elements.last, format: 'ddddd.dd'});
+		}
 	};
 
 	self.updateHistory = function (value) {
@@ -180,8 +182,8 @@ var BTCQuote = function () {
 
 var _bq = new BTCQuote();
 
-var oldBrowser = document.addEventListener === undefined;
-if (!oldBrowser) {
+_bq.isOldBrowser = document.addEventListener === undefined;
+if (!_bq.isOldBrowser) {
 	// 
 (function() {
   var COUNT_FRAMERATE, COUNT_MS_PER_FRAME, DIGIT_FORMAT, DIGIT_HTML, DIGIT_SPEEDBOOST, DURATION, FORMAT_MARK_HTML, FORMAT_PARSER, FRAMERATE, FRAMES_PER_VALUE, MS_PER_FRAME, MutationObserver, Odometer, RIBBON_HTML, TRANSITION_END_EVENTS, TRANSITION_SUPPORT, VALUE_HTML, createFromHTML, fractionalPart, now, requestAnimationFrame, round, transitionCheckStyles, wrapJQuery, _jQueryWrapped, _old, _ref, _ref1,
