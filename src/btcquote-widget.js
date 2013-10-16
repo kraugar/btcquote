@@ -48,15 +48,15 @@ var BTCQuote = function () {
 		}
 
 		if (self._data.bid && self._data.ask && self._data.last) {
-			self._elements.slider.classList.remove('btc-is-loading');
+			self.removeClassFromElement(self._elements.slider, "btc-is-loading");
 		}
 	};
 
 	self.updateColor = function (oldPrice, newPrice) {
 		if (newPrice < oldPrice) {
-			self._elements.lastWrapper.classList.add("btc-red");
+			self.addClassFromElement(self._elements.lastWrapper, "btc-red");
 		}else if (newPrice > oldPrice) {
-			self._elements.lastWrapper.classList.add("btc-green");
+			self.addClassFromElement(self._elements.lastWrapper, "btc-green");
 		}else{
 			self.resetColor();
 		}
@@ -89,7 +89,6 @@ var BTCQuote = function () {
 		self._elements.last.innerHTML = 0;
 
 		new Odometer({el: self._elements.last, format: 'ddddd.dd'});
-
 	};
 
 	self.updateHistory = function (value) {
@@ -108,9 +107,21 @@ var BTCQuote = function () {
 	};
 
 	self.resetColor = function () {
-		self._elements.lastWrapper.classList.remove("btc-green");
-		self._elements.lastWrapper.classList.remove("btc-red");
+		self.removeClassFromElement(self._elements.lastWrapper, "btc-green");
+		self.removeClassFromElement(self._elements.lastWrapper, "btc-red");
 	};
+
+	// (add|remove)ClassFromElement from http://stackoverflow.com/a/6787464/1570248
+	self.addClassToElement = function(el, className){
+	    el.className += ' '+className;   
+	}
+
+	self.removeClassFromElement = function(el, className){
+	    var elClass = ' '+el.className+' ';
+	    while(elClass.indexOf(' '+className+' ') != -1)
+	         elClass = elClass.replace(' '+className+' ', '');
+	    el.className = elClass;
+	}
 
 	// Initialize widget by loading Firebase.js
 	self.addScript('https://cdn.firebase.com/v0/firebase.js', self.initialize);

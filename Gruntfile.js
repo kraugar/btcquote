@@ -36,7 +36,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'jshint',
-    'bower',
     'concat',
     'uglify'
   ]);
