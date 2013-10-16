@@ -37,7 +37,7 @@ img.fork-on-github {
 
 pre {
   text-align: left; 
-  max-width: 860px; 
+  max-width: 600px; 
   margin: 0 auto; 
   clear: both; 
   padding: 0px;
@@ -259,11 +259,11 @@ footer {
   height: 34px;
   width: 129px;
   margin-left: 6px;
-  background: url('../images/powered-by-firebase-dim.png') no-repeat center;
+  background: url('../images/powered-by-firebase-sprite.png') no-repeat -129px 0px;
 }
 
 #powered-by-firebase:hover {
-  background: url('../images/powered-by-firebase.png') no-repeat center;
+  background: url('../images/powered-by-firebase-sprite.png') no-repeat 0px 0px;
   text-decoration: none;
 }
 
@@ -272,11 +272,11 @@ footer {
   height: 34px;
   width: 139px;
   margin-left: 30px;
-  background: url('../images/powered-by-coinbase-dim.png') no-repeat 0px 7px;
+  background: url('../images/powered-by-coinbase-sprite.png') no-repeat -139px 7px;
 }
 
 #powered-by-coinbase:hover {
-  background: url('../images/powered-by-coinbase.png') no-repeat 0px 7px;
+  background: url('../images/powered-by-coinbase-sprite.png') no-repeat 0px 7px;
   text-decoration: none;
 }
 
