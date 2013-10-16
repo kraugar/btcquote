@@ -24,7 +24,7 @@ BTCQuote is completely free and can be used on any website or blog without restr
 BTCQuote uses the [Bitcoin Open Data Set](https://www.firebase.com/docs/data/index.html) for real-time price updates. This service is powered by [Firebase](https://wwww.firebase.com) in collaboration with [Coinbase](https://www.coinbase.com/).
 
 ### Where does the data come from?
-Bitcoin price data is provided by [Coinbase](https://www.coinbase.com/), the leading online bitcoin wallet service.
+Bitcoin price data is provided by [Coinbase](https://www.coinbase.com/), the leading online Bitcoin wallet service.
 
 ### Who's behind BTCQuote.com?
 BTCQuote was built by the folks at [Firebase](https://wwwfirebase.com) in San Francisco, California. 
