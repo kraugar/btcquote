@@ -48,18 +48,15 @@ var BTCQuote = function () {
 		}
 
 		if (self._data.bid && self._data.ask && self._data.last) {
-			//self._elements.slider.classList.remove('btc-is-loading');
-			removeClass(self._elements.slider, "btc-is-loading");
+			self.removeClassFromElement(self._elements.slider, "btc-is-loading");
 		}
 	};
 
 	self.updateColor = function (oldPrice, newPrice) {
 		if (newPrice < oldPrice) {
-			//self._elements.lastWrapper.classList.add("btc-red");
-			addClass(self._elements.lastWrapper, "btc-red");
+			self.addClassFromElement(self._elements.lastWrapper, "btc-red");
 		}else if (newPrice > oldPrice) {
-			//self._elements.lastWrapper.classList.add("btc-green");
-			addClass(self._elements.lastWrapper, "btc-green");
+			self.addClassFromElement(self._elements.lastWrapper, "btc-green");
 		}else{
 			self.resetColor();
 		}
@@ -92,7 +89,6 @@ var BTCQuote = function () {
 		self._elements.last.innerHTML = 0;
 
 		new Odometer({el: self._elements.last, format: 'ddddd.dd'});
-
 	};
 
 	self.updateHistory = function (value) {
@@ -111,11 +107,21 @@ var BTCQuote = function () {
 	};
 
 	self.resetColor = function () {
-		//self._elements.lastWrapper.classList.remove("btc-green");
-		removeClass(self._elements.lastWrapper, "btc-green");
-		//self._elements.lastWrapper.classList.remove("btc-red");
-		removeClass(self._elements.lastWrapper, "btc-red");
+		self.removeClassFromElement(self._elements.lastWrapper, "btc-green");
+		self.removeClassFromElement(self._elements.lastWrapper, "btc-red");
 	};
+
+	// (add|remove)ClassFromElement from http://stackoverflow.com/a/6787464/1570248
+		self.addClassToElement = function(el, className){
+			el.className += ' '+className;   
+		};
+
+		self.removeClassFromElement = function(el, className){
+			var elClass = ' '+el.className+' ';
+			while(elClass.indexOf(' '+className+' ') != -1)
+				elClass = elClass.replace(' '+className+' ', '');
+			el.className = elClass;
+		};
 
 	// Initialize widget by loading Firebase.js
 	self.addScript('https://cdn.firebase.com/v0/firebase.js', self.initialize);
@@ -150,13 +156,20 @@ var BTCQuote = function () {
 			'<div class="btc-is-loading" id="btc-slider">',
 				'<div class="btc-box">',
 					'<div style="position: absolute; z-index: 2; background-image: url(' + BITCOIN_LOGO + '); width: 56px; height: 56px; top: 8px; left: 10px;"></div>',
-					'<div id="btc-last-wrapper" style="position: relative; z-index: 2; font-weight: bold; font-size: 30px; float: right; margin: 6px 10px 0px 0px; height: 32px; width: 140px; text-align: right;"><span style="position: relative; top: 2px; font-size: 28px;">$</span><span class="odometer" id="btc-last-field"></span></div><br />',
+					'<div id="btc-last-wrapper" style="position: relative; z-index: 2; font-weight: bold; font-size: 30px; float: right; margin: 6px 10px 0px 0px; height: 32px; width: 140px; text-align: right;">',
+						'<span style="position: relative; top: 2px; font-size: 28px;">$</span>',
+						'<span class="odometer" id="btc-last-field"></span>',
+					'</div>',
 					'<span class="btc-hides" style="float: right; margin-right: 10px; height: 14px; color: #999; font-size: 10px; margin-top: 2px;">',
-						'<span style="float: left;">Bid: <b>$</b><b id="btc-bid-field"></b></span>',
-						'<span style="float: left; margin-left: 6px;">Ask: <b>$</b><b id="btc-ask-field"></b></span>',
+						'<span style="float: left;">Bid: ',
+							'<b>$</b><b id="btc-bid-field"></b>',
+						'</span>',
+						'<span style="float: left; margin-left: 2px;">Ask: ',
+							'<b>$</b><b id="btc-ask-field"></b>',
+						'</span>',
 					'</span>',
 					'<span style="float: right; font-size: 10px; color: #666; padding-right: 10px;">',
-						'Powered by <a href="http://www.btcquote.com" target="_blank" style="color: #666; text-decoration: underline; cursor: pointer">BTCQuote.com</a>',
+						'Powered by <a href="http://www.btcquote.com" target="_blank" style="color: #666; text-decoration: underline; cursor: pointer; font-size: 10px;">BTCQuote.com</a>',
 					'</span>',
 				'</div>',
 				'<div class="btc-box" style="text-align: center; line-height: 70px; color: #aaa;">Loading...</div>',
@@ -164,17 +177,6 @@ var BTCQuote = function () {
 		'</div>'
 	].join('\n');
 };
-
-function addClass(el, className){
-    el.className += ' '+className;   
-}
-
-function removeClass(el, className){
-    var elClass = ' '+el.className+' ';
-    while(elClass.indexOf(' '+className+' ') != -1)
-         elClass = elClass.replace(' '+className+' ', '');
-    el.className = elClass;
-}
 
 var _bq = new BTCQuote();
 (function() {

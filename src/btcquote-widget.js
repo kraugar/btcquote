@@ -112,16 +112,16 @@ var BTCQuote = function () {
 	};
 
 	// (add|remove)ClassFromElement from http://stackoverflow.com/a/6787464/1570248
-	self.addClassToElement = function(el, className){
-	    el.className += ' '+className;   
-	}
+		self.addClassToElement = function(el, className){
+			el.className += ' '+className;   
+		};
 
-	self.removeClassFromElement = function(el, className){
-	    var elClass = ' '+el.className+' ';
-	    while(elClass.indexOf(' '+className+' ') != -1)
-	         elClass = elClass.replace(' '+className+' ', '');
-	    el.className = elClass;
-	}
+		self.removeClassFromElement = function(el, className){
+			var elClass = ' '+el.className+' ';
+			while(elClass.indexOf(' '+className+' ') != -1)
+				elClass = elClass.replace(' '+className+' ', '');
+			el.className = elClass;
+		};
 
 	// Initialize widget by loading Firebase.js
 	self.addScript('https://cdn.firebase.com/v0/firebase.js', self.initialize);
@@ -156,13 +156,20 @@ var BTCQuote = function () {
 			'<div class="btc-is-loading" id="btc-slider">',
 				'<div class="btc-box">',
 					'<div style="position: absolute; z-index: 2; background-image: url(' + BITCOIN_LOGO + '); width: 56px; height: 56px; top: 8px; left: 10px;"></div>',
-					'<div id="btc-last-wrapper" style="position: relative; z-index: 2; font-weight: bold; font-size: 30px; float: right; margin: 6px 10px 0px 0px; height: 32px; width: 140px; text-align: right;"><span style="position: relative; top: 2px; font-size: 28px;">$</span><span class="odometer" id="btc-last-field"></span></div><br />',
+					'<div id="btc-last-wrapper" style="position: relative; z-index: 2; font-weight: bold; font-size: 30px; float: right; margin: 6px 10px 0px 0px; height: 32px; width: 140px; text-align: right;">',
+						'<span style="position: relative; top: 2px; font-size: 28px;">$</span>',
+						'<span class="odometer" id="btc-last-field"></span>',
+					'</div>',
 					'<span class="btc-hides" style="float: right; margin-right: 10px; height: 14px; color: #999; font-size: 10px; margin-top: 2px;">',
-						'<span style="float: left;">Bid: <b>$</b><b id="btc-bid-field"></b></span>',
-						'<span style="float: left; margin-left: 6px;">Ask: <b>$</b><b id="btc-ask-field"></b></span>',
+						'<span style="float: left;">Bid: ',
+							'<b>$</b><b id="btc-bid-field"></b>',
+						'</span>',
+						'<span style="float: left; margin-left: 2px;">Ask: ',
+							'<b>$</b><b id="btc-ask-field"></b>',
+						'</span>',
 					'</span>',
 					'<span style="float: right; font-size: 10px; color: #666; padding-right: 10px;">',
-						'Powered by <a href="http://www.btcquote.com" target="_blank" style="color: #666; text-decoration: underline; cursor: pointer">BTCQuote.com</a>',
+						'Powered by <a href="http://www.btcquote.com" target="_blank" style="color: #666; text-decoration: underline; cursor: pointer; font-size: 10px;">BTCQuote.com</a>',
 					'</span>',
 				'</div>',
 				'<div class="btc-box" style="text-align: center; line-height: 70px; color: #aaa;">Loading...</div>',
