@@ -49,7 +49,6 @@ pre code {
 }
 
 .copy-button {
-  width: 92px;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -259,11 +258,26 @@ footer {
   display: inline-block;
   height: 34px;
   width: 129px;
+  margin-left: 6px;
   background: url('../images/powered-by-firebase-dim.png') no-repeat center;
 }
 
 #powered-by-firebase:hover {
   background: url('../images/powered-by-firebase.png') no-repeat center;
+  text-decoration: none;
+}
+
+#powered-by-coinbase {
+  display: inline-block;
+  height: 34px;
+  width: 139px;
+  margin-left: 30px;
+  background: url('../images/powered-by-coinbase-dim.png') no-repeat 0px 7px;
+}
+
+#powered-by-coinbase:hover {
+  background: url('../images/powered-by-coinbase.png') no-repeat 0px 7px;
+  text-decoration: none;
 }
 
 #footer-links a {
