@@ -9,7 +9,7 @@ Usage
 -----
 
 	<div id="btc-quote"></div>
-	<script type="text/javascript" src="http://www.btcquote.com/embed.js"></script>
+	<script type="text/javascript" src="//cdngh.firebase.com/btcquote/embed.js"></script>
 
 
 F.A.Q.
