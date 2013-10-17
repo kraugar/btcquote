@@ -28,9 +28,23 @@ var BTCQuote = function () {
 		var script = document.createElement('script');
 		script.type = 'text/javascript';
 		script.src = src;
+
 		script.onload = function () {
 			callback(src);
 		};
+
+		if (self.isOldBrowser) {
+			// From http://stackoverflow.com/a/15437678/1570248
+			var ieLoadBugFix = function (scriptElement, callback) {
+				if (scriptElement.readyState=='loaded' || scriptElement.readyState=='completed') {
+					callback();
+				}else {
+					setTimeout(function() {ieLoadBugFix(scriptElement, callback); }, 1000);
+				}
+			};
+			ieLoadBugFix(script, script.onload);
+		}
+		
 		head.appendChild(script);
 	};
 
