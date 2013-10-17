@@ -200,5 +200,3 @@ var BTCQuote = function () {
 };
 
 var _bq = new BTCQuote();
-
-// @@odometer
