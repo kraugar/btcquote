@@ -27,7 +27,7 @@ BTCQuote uses the [Bitcoin Open Data Set](https://www.firebase.com/docs/data/ind
 Bitcoin price data is provided by [Coinbase](https://www.coinbase.com/), the leading online Bitcoin wallet service.
 
 ### Who's behind BTCQuote.com?
-BTCQuote was built by the folks at [Firebase](https://wwwfirebase.com) in San Francisco, California. 
+BTCQuote was built by the folks at [Firebase](https://www.firebase.com) in San Francisco, California. 
 Community submissions are encouraged. [Star BTCQuote on GitHub](https://github.com/firebase/btcquote) and send a pull request when you're ready to contribute.
 
 License
