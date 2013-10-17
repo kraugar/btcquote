@@ -21,10 +21,10 @@ BTCQuote is an open-source, real-time Bitcoin price widget for your website or b
 BTCQuote is completely free and can be used on any website or blog without restriction. The source code to BTCQuote is published under the [MIT license](http://firebase.mit-license.org/), so feel free to improve, adapt, or redistribute it as you like.
 
 ### Which technologies does BTCQuote use?
-BTCQuote uses the [Bitcoin Open Data Set](https://www.firebase.com/docs/data/index.html) for real-time price updates. This service is powered by [Firebase](https://www.firebase.com) in collaboration with [Coinbase](https://www.coinbase.com/).
+BTCQuote uses the [Bitcoin Open Data Set](https://www.firebase.com/docs/data/index.html) for real-time price updates. This service is powered by [Firebase](https://www.firebase.com) in collaboration with [Coinbase](https://coinbase.com/).
 
 ### Where does the data come from?
-Bitcoin price data is provided by [Coinbase](https://www.coinbase.com/), the leading online Bitcoin wallet service.
+Bitcoin price data is provided by [Coinbase](https://coinbase.com/), the leading online Bitcoin wallet service.
 
 ### Who's behind BTCQuote.com?
 BTCQuote was built by the folks at [Firebase](https://www.firebase.com) in San Francisco, California. 
