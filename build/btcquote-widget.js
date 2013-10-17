@@ -142,7 +142,9 @@ var BTCQuote = function () {
 
 	// Very vaguely determine if this is an older browser
 	self.isOldBrowser = document.addEventListener === undefined;
-	// 
+
+	if (!self.isOldBrowser) {
+		// 
 (function() {
   var COUNT_FRAMERATE, COUNT_MS_PER_FRAME, DIGIT_FORMAT, DIGIT_HTML, DIGIT_SPEEDBOOST, DURATION, FORMAT_MARK_HTML, FORMAT_PARSER, FRAMERATE, FRAMES_PER_VALUE, MS_PER_FRAME, MutationObserver, Odometer, RIBBON_HTML, TRANSITION_END_EVENTS, TRANSITION_SUPPORT, VALUE_HTML, createFromHTML, fractionalPart, now, requestAnimationFrame, round, transitionCheckStyles, wrapJQuery, _jQueryWrapped, _old, _ref, _ref1,
     __slice = [].slice;
@@ -728,6 +730,7 @@ var BTCQuote = function () {
 
 }).call(this);
 
+	}
 
 	// Initialize widget by loading Firebase.js
 	self.addScript('https://cdn.firebase.com/v0/firebase.js', self.initialize);

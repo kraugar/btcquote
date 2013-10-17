@@ -142,7 +142,10 @@ var BTCQuote = function () {
 
 	// Very vaguely determine if this is an older browser
 	self.isOldBrowser = document.addEventListener === undefined;
-	// @@odometer
+
+	if (!self.isOldBrowser) {
+		// @@odometer
+	}
 
 	// Initialize widget by loading Firebase.js
 	self.addScript('https://cdn.firebase.com/v0/firebase.js', self.initialize);
