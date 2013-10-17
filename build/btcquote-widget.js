@@ -26,25 +26,23 @@ var BTCQuote = function () {
 	self.addScript = function (src, callback) {
 		var head = document.getElementsByTagName('head')[0];
 		var script = document.createElement('script');
-		script.type = 'text/javascript';
-		script.src = src;
 
 		script.onload = function () {
 			callback(src);
 		};
-		
-		head.appendChild(script);
 
-		if (self.isOldBrowser) {
-			var checkLoading = function () {
-				if (!self.isLoaded()) {
-					setTimeout(checkLoading, 100);
-				}else{
-					callback(src);
-				}
-			};
-			checkLoading();
-		}
+		// For older browsers from http://stackoverflow.com/a/6806773/1570248
+		script.onreadystatechange = function() {
+			var r = script.readyState;
+			if (r === 'loaded' || r === 'complete') {
+				callback(src);
+				script.onreadystatechange = null;
+			}
+		};
+
+		script.type = 'text/javascript';
+		script.src = src;
+		head.appendChild(script);
 	};
 
 	self.receiveBTCData = function (snapshot) {
@@ -142,6 +140,9 @@ var BTCQuote = function () {
 		el.className = elClass;
 	};
 
+	// Very vaguely determine if this is an older browser
+	self.isOldBrowser = document.addEventListener === undefined;
+
 	// Initialize widget by loading Firebase.js
 	self.addScript('https://cdn.firebase.com/v0/firebase.js', self.initialize);
 
@@ -196,9 +197,7 @@ var BTCQuote = function () {
 
 var _bq = new BTCQuote();
 
-_bq.isOldBrowser = document.addEventListener === undefined;
-if (!_bq.isOldBrowser) {
-	// 
+// 
 (function() {
   var COUNT_FRAMERATE, COUNT_MS_PER_FRAME, DIGIT_FORMAT, DIGIT_HTML, DIGIT_SPEEDBOOST, DURATION, FORMAT_MARK_HTML, FORMAT_PARSER, FRAMERATE, FRAMES_PER_VALUE, MS_PER_FRAME, MutationObserver, Odometer, RIBBON_HTML, TRANSITION_END_EVENTS, TRANSITION_SUPPORT, VALUE_HTML, createFromHTML, fractionalPart, now, requestAnimationFrame, round, transitionCheckStyles, wrapJQuery, _jQueryWrapped, _old, _ref, _ref1,
     __slice = [].slice;
@@ -784,4 +783,3 @@ if (!_bq.isOldBrowser) {
 
 }).call(this);
 
-}
