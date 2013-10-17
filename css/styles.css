@@ -95,6 +95,10 @@ header {
   background-color: #0380FD;
 }
 
+#embed-title {
+  color: white;
+}
+
 .header-title {
   background-color: #0B76D9;
 }
@@ -177,6 +181,7 @@ header {
 #page-links a {
   color: #fff;
 }
+
 
 /* Social Buttons
 -------------------------------------------------- */
@@ -313,6 +318,7 @@ footer {
   margin: 45px auto -15px auto;
   font-size: 72px;
   text-align: center;
+  color: white;
 }
 
 #home-subtitle {
@@ -320,6 +326,7 @@ footer {
   text-align: center;
   margin-bottom: 60px;
   font-weight: 100;
+  color: white;
 }
 
 #home-download-on-github {
